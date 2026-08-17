@@ -1,50 +1,82 @@
-import { Layers, Sparkles } from "lucide-react";
+"use client";
+
+import { ChevronRight, Layers, Menu, Sparkles, X } from "lucide-react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
+import * as React from "react";
 import { ModeToggle } from "@/components/mode-toggle";
+import { cn } from "@/lib/utils";
 
 export function SiteHeader() {
+  const [mobileMenuOpen, setMobileMenuOpen] = React.useState(false);
+  const pathname = usePathname();
+
+  // Close menu on route change or ESC key
+  React.useEffect(() => {
+    if (pathname) {
+      setMobileMenuOpen(false);
+    }
+  }, [pathname]);
+
+  React.useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setMobileMenuOpen(false);
+    };
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, []);
+
+  const navLinks = [
+    { href: "/", label: "Home" },
+    { href: "/components", label: "Components" },
+    { href: "/components/copyright-text", label: "Copyright Text" },
+  ];
+
   return (
     <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/80 backdrop-blur-md">
-      <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-6">
+      <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-4 sm:px-6">
         {/* Brand Logo & Title */}
         <div className="flex items-center gap-6">
           <Link
             href="/"
             className="flex items-center gap-2.5 transition-opacity hover:opacity-90"
           >
-            <div className="flex size-8 items-center justify-center rounded-lg border border-amber-500/30 bg-amber-500/10 text-amber-500 dark:text-amber-400">
+            <div className="flex size-8 items-center justify-center rounded-lg border border-amber-500/30 bg-amber-500/10 text-amber-500 dark:text-amber-400 shrink-0">
               <Sparkles className="size-4" />
             </div>
             <div className="flex flex-col">
-              <span className="font-serif text-lg font-semibold tracking-tight text-foreground">
+              <span className="font-serif text-lg font-semibold tracking-tight text-foreground whitespace-nowrap">
                 MaruMitra{" "}
                 <span className="text-amber-600 dark:text-amber-400">UI</span>
               </span>
             </div>
           </Link>
 
-          {/* Navigation links */}
+          {/* Desktop & Tablet Navigation links */}
           <nav className="hidden items-center gap-6 text-sm font-medium text-muted-foreground md:flex">
-            <Link href="/" className="transition-colors hover:text-foreground">
-              Home
-            </Link>
-            <Link
-              href="/components"
-              className="transition-colors hover:text-foreground"
-            >
-              Components
-            </Link>
-            <Link
-              href="/components/copyright-text"
-              className="transition-colors hover:text-foreground"
-            >
-              Copyright Text
-            </Link>
+            {navLinks.map((link) => {
+              const isActive =
+                link.href === "/"
+                  ? pathname === "/"
+                  : pathname.startsWith(link.href);
+              return (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  className={cn(
+                    "transition-colors hover:text-foreground",
+                    isActive && "text-foreground font-semibold",
+                  )}
+                >
+                  {link.label}
+                </Link>
+              );
+            })}
           </nav>
         </div>
 
         {/* Right Actions */}
-        <div className="flex items-center gap-2.5">
+        <div className="flex items-center gap-2 sm:gap-2.5">
           <a
             href="/r/copyright-text.json"
             target="_blank"
@@ -59,7 +91,7 @@ export function SiteHeader() {
             href="https://github.com/marumitra/marumitra-ui"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex size-8 items-center justify-center rounded-lg border border-border/40 bg-muted/40 text-foreground transition-all duration-200 hover:border-amber-500/40 hover:bg-amber-500/10 hover:text-amber-500 dark:hover:text-amber-400 active:scale-95"
+            className="inline-flex size-8 items-center justify-center rounded-lg border border-border/40 bg-muted/40 text-foreground transition-all duration-200 hover:border-amber-500/40 hover:bg-amber-500/10 hover:text-amber-500 dark:hover:text-amber-400 active:scale-95 shrink-0"
           >
             <svg
               className="size-4"
@@ -77,8 +109,69 @@ export function SiteHeader() {
           </a>
 
           <ModeToggle />
+
+          {/* Mobile Menu Hamburger Button */}
+          <button
+            type="button"
+            onClick={() => setMobileMenuOpen((prev) => !prev)}
+            aria-label="Toggle navigation menu"
+            aria-expanded={mobileMenuOpen}
+            className="inline-flex size-8 items-center justify-center rounded-lg border border-border/40 bg-muted/40 text-foreground transition-all duration-200 hover:border-amber-500/40 hover:bg-amber-500/10 hover:text-amber-500 dark:hover:text-amber-400 active:scale-95 md:hidden cursor-pointer shrink-0"
+          >
+            {mobileMenuOpen ? (
+              <X className="size-4" />
+            ) : (
+              <Menu className="size-4" />
+            )}
+          </button>
         </div>
       </div>
+
+      {/* Mobile Navigation Dropdown Sheet */}
+      {mobileMenuOpen && (
+        <div className="border-b border-border/40 bg-background/95 backdrop-blur-xl px-4 py-4 md:hidden animate-in fade-in slide-in-from-top-2 duration-200 shadow-xl">
+          <nav className="flex flex-col gap-1">
+            {navLinks.map((link) => {
+              const isActive =
+                link.href === "/"
+                  ? pathname === "/"
+                  : pathname.startsWith(link.href);
+              return (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  onClick={() => setMobileMenuOpen(false)}
+                  className={cn(
+                    "flex items-center justify-between rounded-lg px-3 py-2.5 text-sm font-medium transition-colors",
+                    isActive
+                      ? "bg-amber-500/15 text-amber-600 dark:text-amber-400 font-semibold"
+                      : "text-muted-foreground hover:bg-muted/50 hover:text-foreground",
+                  )}
+                >
+                  <span>{link.label}</span>
+                  <ChevronRight className="size-4 opacity-50" />
+                </Link>
+              );
+            })}
+
+            <div className="mt-3 border-t border-border/30 pt-3 flex flex-col gap-2">
+              <a
+                href="/r/copyright-text.json"
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={() => setMobileMenuOpen(false)}
+                className="flex items-center justify-between rounded-lg border border-border/40 bg-muted/30 px-3 py-2 text-xs font-mono text-amber-600 dark:text-amber-300 transition-colors hover:bg-amber-500/10"
+              >
+                <div className="flex items-center gap-2">
+                  <Layers className="size-3.5" />
+                  <span>registry.json</span>
+                </div>
+                <span className="text-[10px] text-muted-foreground">JSON</span>
+              </a>
+            </div>
+          </nav>
+        </div>
+      )}
     </header>
   );
 }

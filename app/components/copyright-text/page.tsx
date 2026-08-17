@@ -16,22 +16,24 @@ export const metadata = {
 
 export default function CopyrightTextDocPage() {
   return (
-    <div className="mx-auto max-w-5xl px-6 py-12 md:py-16">
+    <div className="mx-auto max-w-5xl px-4 sm:px-6 py-8 sm:py-12 md:py-16 overflow-x-hidden">
       {/* Breadcrumb Navigation */}
-      <div className="flex items-center gap-2 text-xs text-muted-foreground mb-6">
+      <div className="flex flex-wrap items-center gap-2 text-xs text-muted-foreground mb-4 sm:mb-6">
         <Link
           href="/components"
           className="transition-colors hover:text-amber-600 dark:hover:text-amber-300"
         >
           Components
         </Link>
-        <ChevronRight className="size-3.5" />
-        <span className="text-foreground">Copyright Text</span>
+        <ChevronRight className="size-3.5 shrink-0" />
+        <span className="text-foreground truncate max-w-[200px] sm:max-w-none">
+          Copyright Text
+        </span>
       </div>
 
       {/* Header Section */}
-      <div className="flex flex-col gap-4 border-b border-border/40 pb-8">
-        <div className="flex items-center gap-2">
+      <div className="flex flex-col gap-4 border-b border-border/40 pb-6 sm:pb-8">
+        <div className="flex flex-wrap items-center gap-2.5">
           <h1 className="font-serif text-3xl sm:text-4xl md:text-5xl font-semibold tracking-tight text-foreground">
             Copyright Text
           </h1>
@@ -40,14 +42,14 @@ export default function CopyrightTextDocPage() {
           </span>
         </div>
 
-        <p className="max-w-2xl text-sm text-muted-foreground leading-relaxed">
+        <p className="max-w-2xl text-xs sm:text-sm text-muted-foreground leading-relaxed">
           A composable, zero-hydration React Server Component (RSC) that renders
           a standardized copyright line with dynamic year calculation, company
           name, rights statement, and customizable MaruMitra logo UTM
           attribution.
         </p>
 
-        <div className="flex flex-wrap items-center gap-2 pt-2">
+        <div className="flex flex-wrap items-center gap-2 pt-1 sm:pt-2">
           <span className="rounded-md border border-border/40 bg-card px-2.5 py-1 text-xs text-muted-foreground">
             React Server Component (RSC)
           </span>
@@ -293,8 +295,8 @@ export function FooterCopyright() {
           <h3 className="font-serif text-base font-semibold text-amber-600 dark:text-amber-400">
             &lt;CopyrightText /&gt;
           </h3>
-          <div className="overflow-x-auto rounded-xl border border-border/40 bg-card text-card-foreground shadow-lg">
-            <table className="w-full text-left text-xs">
+          <div className="w-full overflow-x-auto rounded-xl border border-border/40 bg-card text-card-foreground shadow-lg">
+            <table className="w-full min-w-[480px] text-left text-xs">
               <thead className="border-b border-border/30 bg-muted/40 text-muted-foreground">
                 <tr>
                   <th className="p-3 font-semibold">Prop</th>
@@ -341,8 +343,8 @@ export function FooterCopyright() {
           <h3 className="font-serif text-base font-semibold text-amber-600 dark:text-amber-400">
             &lt;CopyrightNotice /&gt;
           </h3>
-          <div className="overflow-x-auto rounded-xl border border-border/40 bg-card text-card-foreground shadow-lg">
-            <table className="w-full text-left text-xs">
+          <div className="w-full overflow-x-auto rounded-xl border border-border/40 bg-card text-card-foreground shadow-lg">
+            <table className="w-full min-w-[520px] text-left text-xs">
               <thead className="border-b border-border/30 bg-muted/40 text-muted-foreground">
                 <tr>
                   <th className="p-3 font-semibold">Prop</th>
@@ -420,8 +422,8 @@ export function FooterCopyright() {
           <h3 className="font-serif text-base font-semibold text-amber-600 dark:text-amber-400">
             &lt;CopyrightAttribution /&gt;
           </h3>
-          <div className="overflow-x-auto rounded-xl border border-border/40 bg-card text-card-foreground shadow-lg">
-            <table className="w-full text-left text-xs">
+          <div className="w-full overflow-x-auto rounded-xl border border-border/40 bg-card text-card-foreground shadow-lg">
+            <table className="w-full min-w-[520px] text-left text-xs">
               <thead className="border-b border-border/30 bg-muted/40 text-muted-foreground">
                 <tr>
                   <th className="p-3 font-semibold">Prop</th>

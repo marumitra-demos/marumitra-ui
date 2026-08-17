@@ -6,7 +6,7 @@ import {
 
 export function SiteFooter() {
   return (
-    <footer className="w-full border-t border-border/40 bg-muted/20 px-6 py-8 md:px-12">
+    <footer className="w-full border-t border-border/40 bg-muted/20 px-4 sm:px-6 md:px-12 py-8">
       <div className="mx-auto max-w-6xl">
         <CopyrightText showBorder={false}>
           <CopyrightNotice

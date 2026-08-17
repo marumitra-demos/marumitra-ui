@@ -19,8 +19,8 @@ const components = [
 
 export default function ComponentsCatalogPage() {
   return (
-    <div className="mx-auto max-w-5xl px-6 py-12 md:py-16">
-      <div className="flex flex-col gap-4 border-b border-border/40 pb-8">
+    <div className="mx-auto max-w-5xl px-4 sm:px-6 py-8 sm:py-12 md:py-16 overflow-x-hidden">
+      <div className="flex flex-col gap-4 border-b border-border/40 pb-6 sm:pb-8">
         <div className="inline-flex items-center gap-2 self-start rounded-full border border-amber-500/30 bg-amber-500/10 px-3.5 py-1 text-xs font-medium text-amber-600 dark:text-amber-400">
           <Layers className="size-3.5" />
           <span>Registry Directory</span>
@@ -30,19 +30,19 @@ export default function ComponentsCatalogPage() {
           Components
         </h1>
 
-        <p className="max-w-2xl text-sm text-muted-foreground leading-relaxed">
+        <p className="max-w-2xl text-xs sm:text-sm text-muted-foreground leading-relaxed">
           Explore all open components distributed via the MaruMitra UI shadcn
           registry. Install directly into your application using the shadcn CLI.
         </p>
       </div>
 
       {/* Component Cards Grid */}
-      <div className="mt-10 grid grid-cols-1 gap-6 md:grid-cols-2">
+      <div className="mt-8 sm:mt-10 grid grid-cols-1 gap-4 sm:gap-6 md:grid-cols-2">
         {components.map((item) => (
           <Link
             key={item.slug}
             href={`/components/${item.slug}`}
-            className="group flex flex-col justify-between rounded-2xl border border-border/40 bg-card p-6 shadow-xl text-card-foreground transition-all duration-200 hover:-translate-y-1 hover:border-amber-500/40 hover:bg-muted/40"
+            className="group flex flex-col justify-between rounded-2xl border border-border/40 bg-card p-5 sm:p-6 shadow-xl text-card-foreground transition-all duration-200 hover:-translate-y-1 hover:border-amber-500/40 hover:bg-muted/40"
           >
             <div className="flex flex-col gap-3">
               <div className="flex items-center justify-between">
