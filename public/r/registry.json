@@ -1,19 +1,21 @@
 {
-    "$schema": "https://ui.shadcn.com/schema/registry.json",
-    "name": "marumitra-ui",
-    "homepage": "https://github.com/marumitra/marumitra-ui",
-    "items": [
+  "$schema": "https://ui.shadcn.com/schema/registry.json",
+  "name": "marumitra-ui",
+  "homepage": "https://github.com/marumitra/marumitra-ui",
+  "items": [
+    {
+      "name": "copyright-text",
+      "type": "registry:ui",
+      "title": "Copyright Text",
+      "description": "A composable copyright and UTM attribution bar with customizable company, year, logo (file/URL), and rights statement.",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
         {
-            "name": "button2",
-            "type": "registry:ui",
-            "title": "Button2",
-            "description": "A simple button component.",
-            "files": [
-                {
-                    "path": "components/ui/button_v2.tsx",
-                    "type": "registry:ui"
-                }
-            ]
+          "path": "components/ui/copyright-text.tsx",
+          "type": "registry:ui"
         }
-    ]
+      ]
+    }
+  ]
 }
