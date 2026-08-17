@@ -19,7 +19,7 @@ const components = [
 
 export default function ComponentsCatalogPage() {
   return (
-    <div className="mx-auto max-w-5xl px-4 sm:px-6 py-8 sm:py-12 md:py-16 overflow-x-hidden">
+    <div className="mx-auto w-full max-w-5xl min-w-0 px-4 sm:px-6 py-8 sm:py-12 md:py-16 overflow-x-hidden">
       <div className="flex flex-col gap-4 border-b border-border/40 pb-6 sm:pb-8">
         <div className="inline-flex items-center gap-2 self-start rounded-full border border-amber-500/30 bg-amber-500/10 px-3.5 py-1 text-xs font-medium text-amber-600 dark:text-amber-400">
           <Layers className="size-3.5" />

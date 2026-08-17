@@ -16,7 +16,7 @@ export const metadata = {
 
 export default function CopyrightTextDocPage() {
   return (
-    <div className="mx-auto max-w-5xl px-4 sm:px-6 py-8 sm:py-12 md:py-16 overflow-x-hidden">
+    <div className="mx-auto w-full max-w-5xl min-w-0 px-4 sm:px-6 py-8 sm:py-12 md:py-16 overflow-x-hidden">
       {/* Breadcrumb Navigation */}
       <div className="flex flex-wrap items-center gap-2 text-xs text-muted-foreground mb-4 sm:mb-6">
         <Link

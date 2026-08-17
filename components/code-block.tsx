@@ -60,7 +60,7 @@ export function CodeBlock({
           )}
         </button>
       </div>
-      <div className="overflow-x-auto p-3.5 sm:p-4 leading-relaxed text-neutral-200 dark:text-[#d4cfc9]">
+      <div className="w-full max-w-full min-w-0 overflow-x-auto p-3.5 sm:p-4 leading-relaxed text-neutral-200 dark:text-[#d4cfc9]">
         <pre className="m-0 font-mono text-xs">
           <code>{code}</code>
         </pre>
